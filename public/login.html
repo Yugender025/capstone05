@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Watch TV Shows & Movies Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .banner_container {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            height: 140vh;
+           
+           
+        }
+
+        .banner_container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            background-image: rgba(33, 13, 22, 1) 16%;
+        }
+
+        .nav_menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            position: relative;
+            z-index: 9999;
+            width: 100%;
+        }
+
+        .netflix-logo {
+            height: 45px;
+        }
+
+        .nav_right {
+            display: flex;
+            align-items: center;
+        }
+
+        .language-selector {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .language-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            padding: 8px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .language-btn i {
+            margin-left: 5px;
+        }
+
+        .language-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .signin-btn {
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 8px 17px;
+            cursor: pointer;
+        }
+
+        .signin-btn:hover {
+            background-color: #f40612;
+        }
+
+        .main_container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+            max-width: 950px;
+            z-index: 1;
+        }
+
+     
+
+        .container_header h1 {
+            font-size: 50px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            max-width: 800px;
+            line-height: 1.1;
+        }
+
+        .container_header p {
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .caption-container p {
+            font-size: 1rem;
+            
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 700px;
+            margin-top: 20px;
+        }
+
+        .email-form h3 {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-input {
+            width: 65%;
+            height: 60px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 1px solid #8c8c8c;
+            border-radius: 4px;
+            margin-right: 1px;
+            min-width: 300px;
+        }
+
+        .get-started-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 400;
+            padding: 12px 24px;
+            height: 60px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .get-started-btn i {
+            margin-left: 10px;
+            font-size: 20px;
+        }
+
+        .get-started-btn:hover {
+            background-color: #f40612;
+        }
+        .movies_trending {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .movies_header h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+        
+        .movies_list {
+            display: flex;
+            flex:calc(100% - 20px);
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px 0;
+            list-style-type: none;
+            align-items: flex-end;
+        }
+        .movies_list li:nth-child(1) .movie_poster {
+    width:700px;
+    height: 420px;
+}
+        
+        .movies_list li {
+            position: relative;
+            flex: 0 0 auto;
+        }
+        
+        .movie_poster {
+            width: 250px;
+            height: 370px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .movie_poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .movie_number {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 72px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        
+        .movie_title {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        .movie_subtitle {
+            position: absolute;
+            top: 40px;
+            left: 10px;
+            right: 10px;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        /* Hide scrollbar but keep functionality */
+        .movies_list::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .movies_list {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .features-section {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 8px solid #222;
+        }
+
+        .feature {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 70px 45px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .feature-text {
+            width: 48%;
+            padding-right: 20px;
+        }
+
+        .feature-text h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        .default-ltr-cache-1f97ztc {
+    box-sizing: border-box;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    margin: auto;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: solid .25rem transparent;
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    border-bottom: none;
+    background: radial-gradient(50% 500% at 50% -420%, rgba(64, 97, 231, 0.4) 80%, rgba(0, 0, 0, 0.1) 100%), black;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+        .default-ltr-cache-1f97ztc:before {
+        opacity: 0.29;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin-top: -.25rem;
+    border-radius: inherit;
+    background: linear-gradient(to right, rgba(33, 13, 22, 1) 16%, rgba(184, 40, 105, 1), rgba(229, 9, 20, 1), rgba(184, 40, 105, 1), rgba(33, 13, 22, 1) 84%);
+}
+.default-ltr-cache-dulgtd {
+    box-sizing: border-box;
+    overflow-x: hidden;
+    position: relative;
+    height: 6.25rem;
+    z-index: 1;
+}
+.default-ltr-cache-1f97ztc {
+    width: 200%;
+    left: -50%;
+}
+.default-ltr-cache-qku0ge * {
+    box-sizing: border-box;
+}
+
+        .feature-text p {
+            font-size: 20px;
+        }
+
+        .feature-img {
+            width: 48%;
+            position: relative;
+        }
+
+        .feature-img img {
+            width: 100%;
+            z-index: 1;
+        }
+
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .footer {
+            padding: 70px 45px;
+            max-width: 1000px;
+            margin: 0 auto;
+            color: #757575;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: #757575;
+            text-decoration: none;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer p {
+            margin-bottom: 20px;
+        }
+
+        .footer .language-selector {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 950px) {
+            .container_header h1 {
+                font-size: 32px;
+            }
+            .container_header p {
+                font-size: 18px;
+            }
+            .email-form h3 {
+                font-size: 18px;
+            }
+            .feature {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 30px;
+            }
+            .feature-text, .feature-img {
+                width: 100%;
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+            .feature-text h2 {
+                font-size: 32px;
+            }
+            .feature-text p {
+                font-size: 18px;
+            }
+            .get-started-btn {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .nav_menu {
+                padding: 15px 20px;
+            }
+            .netflix-logo {
+                height: 24px;
+            }
+            .form-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .email-input {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 10px;
+                height: 50px;
+            }
+            .get-started-btn {
+                width: 100%;
+                height: 50px;
+                font-size: 18px;
+            }
+        }
+
+        /*form*/
+        .form_container {
+            z-index: 1;
+            max-width: 450px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .login-container, .signup-container {
+            background-color: rgba(0, 0, 0, 0.75);
+            border-radius: 4px;
+            padding: 60px 68px 40px;
+            width: 100%;
+        }
+
+        .signup-container {
+            display: none;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 50px;
+            background-color: #333;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            padding: 16px 20px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-control:focus {
+            background-color: #454545;
+        }
+
+        .btn-primary {
+            width: 100%;
+            height: 50px;
+            background-color: #e50914;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 24px 0 12px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #f40612;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #737373;
+        }
+
+        .sign-in-code {
+            width: 100%;
+            height: 48px;
+            background-color: #333;
+            color: #8c8c8c;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            line-height: 48px;
+        }
+
+        .forgot-password {
+            display: block;
+            color: #b3b3b3;
+            font-size: 13px;
+            text-decoration: none;
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #b3b3b3;
+            margin-top: 16px;
+        }
+
+        .checkbox-container input {
+            margin-right: 5px;
+        }
+
+        .signup-text, .login-text {
+            color: #737373;
+            font-size: 16px;
+            margin-top: 16px;
+        }
+
+        .signup-link, .login-link {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        .recaptcha-info {
+            font-size: 13px;
+            color: #8c8c8c;
+            margin-top: 24px;
+        }
+
+        .learn-more {
+            color: #0071eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <section class="banner_container" style="background-image: url('assets/images/banner_netflix.jpg');">
+        <div class="nav_menu">
+            <img src="/assets/images/logo_hero.png" alt="Netflix" class="netflix-logo">
+            <div class="nav_right">
+                <div class="language-selector">
+                    <button class="language-btn">
+                        <i class="fas fa-globe"></i>
+                        English
+                        <i class="fas fa-caret-down"></i>
+                    </button>
+                </div>
+               <a href="login.html"></a> <button class="signin-btn">Sign In</button>
+            </div>
+        </div>
+        
+     
+        <div class="form_container">
+            <div class="login-container" id="loginContainer">
+                <h1>Sign In</h1>
+                
+                <div id="loginErrorWrongPassword" class="error-message" style="display: none;">Incorrect password. Please try again.</div>
+                <div id="loginErrorUserNotFound" class="error-message" style="display: none;">Email not found. Please check your email or sign up.</div>
+    
+                <form id="loginForm" method="post" action="/login">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Email or mobile number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign In</button>
+                    
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    
+                    <div class="divider">OR</div>
+                    
+                    <div class="sign-in-code">Use a sign-in code</div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                    
+                    <p class="signup-text">New to Netflix? <a href="#" class="signup-link" id="showSignup">Sign up now.</a></p>
+                    
+                    <p class="recaptcha-info">
+                        This page is protected by Google reCAPTCHA to ensure you're not a bot.
+                        <a href="#" class="learn-more">Learn more.</a>
+                    </p>
+                </form>
+            </div>
+            
+            <div class="signup-container" id="signupContainer" style="display: none;">
+                <h1>Sign Up</h1>
+                <div id="signupErrorPasswordsMismatch" class="error-message" style="display: none;">Passwords do not match!</div>
+                <div id="signupErrorEmailExists" class="error-message" style="display: none;">Email already exists. Please use a different email or login.</div>
+                <div id="signupErrorDbError" class="error-message" style="display: none;">Error creating account. Please try again later.</div>
+                
+                <form id="signupForm" method="post" action="/register">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="signupName" name="signupName" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="signupEmail" name="signupEmail" placeholder="Email address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="signupPassword" name="signupPassword" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                    
+                    <p class="login-text">Already have an account? <a href="#" class="login-link" id="showLogin">Sign in now.</a></p>
+                    
+                    <p class="recaptcha-info">
+                        This page is protected by Google reCAPTCHA to ensure you're not a bot.
+                        <a href="#" class="learn-more">Learn more.</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters to check for errors
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            const message = urlParams.get('message');
+            
+            if (error) {
+                if (error === 'wrong_password') {
+                    document.getElementById('loginErrorWrongPassword').style.display = 'block';
+                } else if (error === 'user_not_found') {
+                    document.getElementById('loginErrorUserNotFound').style.display = 'block';
+                } else {
+                    // Display a generic error message
+                    alert(error);
+                }
+            }
+        
+            if (message) {
+                if (message === 'email_exists') {
+                    toggleForms(); // Switch to signup form
+                    document.getElementById('signupErrorEmailExists').style.display = 'block';
+                } else if (message === 'passwords_mismatch') {
+                    toggleForms(); // Switch to signup form
+                    document.getElementById('signupErrorPasswordsMismatch').style.display = 'block';
+                } else if (message === 'db_error') {
+                    toggleForms(); // Switch to signup form
+                    document.getElementById('signupErrorDbError').style.display = 'block';
+                } else {
+                    alert(message);
+                }
+            }
+        
+            // Login form client-side validation
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                document.getElementById('loginErrorWrongPassword').style.display = 'none';
+                document.getElementById('loginErrorUserNotFound').style.display = 'none';
+        
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+        
+                if (!email || !password) {
+                    event.preventDefault();
+                    alert('Please fill in all required fields');
+                }
+            });
+        
+            // Signup form client-side validation
+            document.getElementById('signupForm').addEventListener('submit', function(event) {
+                document.getElementById('signupErrorPasswordsMismatch').style.display = 'none';
+                document.getElementById('signupErrorEmailExists').style.display = 'none';
+                document.getElementById('signupErrorDbError').style.display = 'none';
+        
+                const name = document.getElementById('signupName').value.trim();
+                const email = document.getElementById('signupEmail').value.trim();
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+        
+                if (!name || !email || !password || !confirmPassword) {
+                    event.preventDefault();
+                    alert('Please fill in all required fields');
+                    return;
+                }
+        
+                if (password !== confirmPassword) {
+                    event.preventDefault();
+                    document.getElementById('signupErrorPasswordsMismatch').style.display = 'block';
+                    return;
+                }
+        
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    event.preventDefault();
+                    alert('Please enter a valid email address');
+                    return;
+                }
+            });
+        
+            // Form toggle logic
+            document.getElementById('showSignup').addEventListener('click', function(event) {
+                event.preventDefault();
+                toggleForms();
+            });
+        
+            document.getElementById('showLogin').addEventListener('click', function(event) {
+                event.preventDefault();
+                toggleForms();
+            });
+        
+            function toggleForms() {
+                const loginContainer = document.getElementById('loginContainer');
+                const signupContainer = document.getElementById('signupContainer');
+        
+                document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+        
+                if (loginContainer.style.display === 'none') {
+                    loginContainer.style.display = 'block';
+                    signupContainer.style.display = 'none';
+                } else {
+                    loginContainer.style.display = 'none';
+                    signupContainer.style.display = 'block';
+                }
+            }
+        });
+        </script>
+        
+</body>
+</html>

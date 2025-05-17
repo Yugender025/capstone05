@@ -1,0 +1,650 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>aws capstone project</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-gCjXxgr/d4Sxk1kgbTEliPxpF8ZBx0HTaY4/hgS7Tp+MiRdAfMZ9PIBG3ZiRz99D3D6evGLFQyRsPqZobDGGg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="js/cufon-yui.js" type="text/javascript"></script>
+<script src="js/cufon-replace.js" type="text/javascript"></script>
+<script src="js/Gill_Sans_400.font.js" type="text/javascript"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="js/ie_png.js"></script>
+<script type="text/javascript">ie_png.fix('.png, .link1 span, .link1');</script>
+<link href="css/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+</head>
+<style>
+  * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  body {
+      background-color: #000;
+      color: #fff;
+  }
+
+  .banner_container {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+     
+      overflow: hidden;
+  }
+
+  .banner_container:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      background-image: rgba(33, 13, 22, 1) 16%;
+  }
+
+  .nav_menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      position: relative;
+      z-index: 9999;
+      width: 100%;
+  }
+
+  .netflix-logo {
+      height: 45px;
+  }
+
+  .nav_right {
+      display: flex;
+      align-items: center;
+  }
+
+  .language-selector {
+      position: relative;
+      margin-right: 20px;
+  }
+
+  .language-btn {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      color: white;
+      font-size: 14px;
+      padding: 8px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+  }
+
+  .language-btn i {
+      margin-left: 5px;
+  }
+
+  .language-btn:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .signin-btn {
+      background-color: #e50914;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 8px 17px;
+      cursor: pointer;
+  }
+
+  .signin-btn:hover {
+      background-color: #f40612;
+  }
+
+  .main_container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 90%;
+      max-width: 950px;
+      z-index: 1;
+  }
+
+
+
+  .container_header h1 {
+      font-size: 50px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      max-width: 800px;
+      line-height: 1.1;
+  }
+
+  .container_header p {
+      font-size: 26px;
+      font-weight: 400;
+      margin-bottom: 20px;
+  }
+
+  .caption-container p {
+      font-size: 1rem;
+      
+  }
+
+  .email-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 700px;
+      margin-top: 20px;
+  }
+
+  .email-form h3 {
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 20px;
+  }
+
+  .form-container {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+
+  .email-input {
+      width: 65%;
+      height: 60px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: 1px solid #8c8c8c;
+      border-radius: 4px;
+      margin-right: 1px;
+      min-width: 300px;
+  }
+
+  .get-started-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e50914;
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      font-weight: 400;
+      padding: 12px 24px;
+      height: 60px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+  }
+
+  .get-started-btn i {
+      margin-left: 10px;
+      font-size: 20px;
+  }
+
+  .get-started-btn:hover {
+      background-color: #f40612;
+  }
+  .movies_trending {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+  
+  .movies_header h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: #fff;
+  }
+  
+  .movies_list {
+      display: flex;
+      flex:calc(100% - 20px);
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px 0;
+      list-style-type: none;
+      align-items: flex-end;
+  }
+  .movies_list li:nth-child(1) .movie_poster {
+width:700px;
+height: 420px;
+}
+  
+  .movies_list li {
+      position: relative;
+      flex: 0 0 auto;
+  }
+  
+  .movie_poster {
+      width: 250px;
+      height: 370px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+  }
+  
+  .movie_poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+  
+  .movie_number {
+      position: absolute;
+      bottom: 34px;
+      left: 10px;
+      font-size: 72px;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  }
+  
+  .movie_title {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  }
+  
+  .movie_subtitle {
+      position: absolute;
+      top: 40px;
+      left: 10px;
+      right: 10px;
+      text-align: center;
+      color: white;
+      font-size: 16px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .movies_list::-webkit-scrollbar {
+      display: none;
+  }
+  
+  .movies_list {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+  .features-section {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 8px solid #222;
+  }
+
+  .feature {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 70px 45px;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+  }
+
+  .feature-text {
+      width: 48%;
+      padding-right: 20px;
+  }
+
+  .feature-text h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: #fff;
+  }
+  .default-ltr-cache-1f97ztc {
+box-sizing: border-box;
+position: absolute;
+height: 100%;
+top: 0;
+margin: auto;
+display: -webkit-box;
+display: -webkit-flex;
+display: -ms-flexbox;
+display: flex
+;
+-webkit-align-items: center;
+-webkit-box-align: center;
+-ms-flex-align: center;
+align-items: center;
+border: solid .25rem transparent;
+border-top-left-radius: 50% 100%;
+border-top-right-radius: 50% 100%;
+border-bottom: none;
+background: radial-gradient(50% 500% at 50% -420%, rgba(64, 97, 231, 0.4) 80%, rgba(0, 0, 0, 0.1) 100%), black;
+-webkit-background-clip: padding-box;
+background-clip: padding-box;
+}
+  .default-ltr-cache-1f97ztc:before {
+  opacity: 0.29;
+content: '';
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+z-index: -1;
+margin-top: -.25rem;
+border-radius: inherit;
+background: linear-gradient(to right, rgba(33, 13, 22, 1) 16%, rgba(184, 40, 105, 1), rgba(229, 9, 20, 1), rgba(184, 40, 105, 1), rgba(33, 13, 22, 1) 84%);
+}
+.default-ltr-cache-dulgtd {
+box-sizing: border-box;
+overflow-x: hidden;
+position: relative;
+height: 6.25rem;
+z-index: 1;
+}
+.default-ltr-cache-1f97ztc {
+width: 200%;
+left: -50%;
+}
+.default-ltr-cache-qku0ge * {
+box-sizing: border-box;
+}
+
+  .feature-text p {
+      font-size: 20px;
+  }
+
+  .feature-img {
+      width: 48%;
+      position: relative;
+  }
+
+  .feature-img img {
+      width: 100%;
+      z-index: 1;
+  }
+
+  .video-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  }
+
+  .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+
+  .footer {
+      padding: 70px 45px;
+      max-width: 1000px;
+      margin: 0 auto;
+      color: #757575;
+  }
+
+  .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 20px 0;
+  }
+
+  .footer-links a {
+      color: #757575;
+      text-decoration: none;
+      margin-right: 15px;
+      margin-bottom: 15px;
+      font-size: 13px;
+  }
+
+  .footer-links a:hover {
+      text-decoration: underline;
+  }
+
+  .footer p {
+      margin-bottom: 20px;
+  }
+
+  .footer .language-selector {
+      margin-bottom: 20px;
+  }
+
+  @media (max-width: 950px) {
+      .container_header h1 {
+          font-size: 32px;
+      }
+      .container_header p {
+          font-size: 18px;
+      }
+      .email-form h3 {
+          font-size: 18px;
+      }
+      .feature {
+          flex-direction: column;
+          text-align: center;
+          padding: 50px 30px;
+      }
+      .feature-text, .feature-img {
+          width: 100%;
+          padding-right: 0;
+          margin-bottom: 20px;
+      }
+      .feature-text h2 {
+          font-size: 32px;
+      }
+      .feature-text p {
+          font-size: 18px;
+      }
+      .get-started-btn {
+          font-size: 18px;
+      }
+  }
+
+  @media (max-width: 550px) {
+      .nav_menu {
+          padding: 15px 20px;
+      }
+      .netflix-logo {
+          height: 24px;
+      }
+      .form-container {
+          flex-direction: column;
+          align-items: center;
+      }
+      .email-input {
+          width: 100%;
+          margin-right: 0;
+          margin-bottom: 10px;
+          height: 50px;
+      }
+      .get-started-btn {
+          width: 100%;
+          height: 50px;
+          font-size: 18px;
+      }
+  }
+
+</style>
+<body id="page1">
+<!-- START PAGE SOURCE -->
+<section class="banner_container" style="background-image: url('assets/images/bg_netflix_img.jpg');">
+  <div class="nav_menu">
+      <img src="assets/images/logo_hero.png" alt="Netflix" class="netflix-logo">
+      <div class ="nav_right">
+          <div class="language-selector">
+              <button class="language-btn">
+                  <i class="fas fa-globe"></i>
+                  English
+                  <i class="fas fa-caret-down"></i>
+              </button>
+          </div>
+         <a href="login.html"><button class="signin-btn">Sign In</button></a> 
+      </div>
+  </div>
+  
+  <div class="main_container">
+      <div class="header_container">
+          <div class="container_header">
+              <h1>Unlimited movies, <br> TV shows, and more</h1>
+              <p>Watch anywhere. Cancel anytime.</p>
+          </div>
+          <div class="caption-container">
+              <p>Ready to watch? Enter your email to create or restart your membership.</p>
+          </div>
+      </div>
+      
+      <div class="email-form">
+          <div class="form-container">
+              <input type="email" class="email-input" placeholder="Email address" required>
+             <a href="login.html">
+              <button class="get-started-btn">
+                  Get Started
+                  <i class="fas fa-chevron-right"></i>
+              </button>
+             </a> 
+          </div>
+      </div>
+  </div>
+</section>
+<div class="default-ltr-cache-dulgtd"><div class="curve-container"><div class="default-ltr-cache-1f97ztc"></div></div><div class="default-ltr-cache-jtcpfi"></div></div>
+<div class="movies_trending">
+  <div class="movies_header">
+      <h2>Trending topics</h2>
+  </div>
+  <div class="movies_list">
+      <li>
+          <div class="movie_poster">
+              <img src="assets/images/eks.png" alt="Inception">
+           
+              <div class="movie_number">1</div>
+          </div>
+      </li>
+      <li>
+          <div class="movie_poster">
+              <img src="assets/images/s3.png" alt="salar">
+            
+              <div class="movie_number">2</div>
+          </div>
+      </li>
+      <li>
+          <div class="movie_poster">
+              <img src="assets/images/Iam.jpg" alt="Naruto">
+           
+              <div class="movie_number">3</div>
+          </div>
+      </li>
+      <li>
+          <div class="movie_poster">
+              <img src="assets/images/IAM policies.jpg" alt="Pushpa 2">
+             
+              <div class="movie_number">4</div>
+          </div>
+      </li>
+      <li>
+          <div class="movie_poster">
+              <img src="assets/images/awsaccount.png" alt="Pushpa 2">
+        
+              <div class="movie_number">5</div>
+          </div>
+      </li>
+     
+  </div>
+</div>
+<div class="features-section">
+  <div class="feature">
+      <div class="feature-text">
+          <h2>Enjoy on your TV</h2>
+          <p>Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</p>
+      </div>
+      <div class="feature-img">
+          <img src="assets/images/photo-1717295248302-543d5a49091f.jpeg" alt="TV">
+      </div>
+  </div>
+
+  <div class="feature" style="background-color: #000;">
+      <div class="feature-img">
+          <img src="assets/images/download_ntf.webp" alt="Mobile">
+      </div>
+      <div class="feature-text">
+          <h2>Download your shows to watch offline</h2>
+          <p>Save your favorites easily and always have something to watch.</p>
+      </div>
+  </div>
+
+  <div class="feature">
+      <div class="feature-text">
+          <h2>Watch everywhere</h2>
+          <p>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+      </div>
+      <div class="feature-img">
+          <img src="https://variety.com/wp-content/uploads/2023/07/Netflix-mobile-My-Netflix-tab.png" alt="Devices">
+      </div>
+  </div>
+
+  <div class="feature" style="background-color: #000;">
+      <div class="feature-img">
+          <img src="assets/images/kids_ntf.png" alt="Kids">
+      </div>
+      <div class="feature-text">
+          <h2>Create profiles for kids</h2>
+          <p>Send kids on adventures with their favorite characters in a space made just for them—free with your membership.</p>
+      </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Questions? Call 1-844-505-2993</p>
+  <div class="footer-links">
+      <a href="#">FAQ</a>
+      <a href="#">Help Center</a>
+      <a href="#">Account</a>
+      <a href="#">Media Center</a>
+      <a href="#">Investor Relations</a>
+      <a href="#">Jobs</a>
+      <a href="#">Ways to Watch</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy</a>
+      <a href="#">Cookie Preferences</a>
+      <a href="#">Corporate Information</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Speed Test</a>
+      <a href="#">Legal Notices</a>
+      <a href="#">Only on Netflix</a>
+  </div>
+  <div class="language-selector">
+      <button class="language-btn">
+          <i class="fas fa-globe"></i>
+          English
+          <i class="fas fa-caret-down"></i>
+      </button>
+  </div>
+  <p>Netflix</p>
+</div>
+<script type="text/javascript"> Cufon.now(); </script>
+<!-- END PAGE SOURCE -->
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Roadies</title>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-regular.css" >
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-light.css" >
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.6.0/css/sharp-solid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #141414;
+            color: white;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4%;
+            height: 68px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 10%, rgba(0,0,0,0));
+            z-index: 1000;
+        }
+        
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .netflix-logo {
+            height: 25px;
+            margin-right: 25px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-right: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .nav-links li:hover {
+            opacity: 0.7;
+        }
+        
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-icon {
+            margin-left: 22px;
+            cursor: pointer;
+        }
+        
+        .hero {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(to top, #141414 10%, transparent 60%), 
+                        linear-gradient(to right, rgba(0,0,0,0.75) 5%, transparent 50%), 
+                        url('/assets/images/salar_mainbc.jpg') no-repeat;
+            background-size: cover;
+            background-position: center 20%;
+        }
+        
+        .hero-content {
+            position: absolute;
+            top: 45%;
+            left: 4%;
+            width: 36%;
+        }
+        
+        .show-logo {
+            width: 90%;
+            max-width: 300px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .metadata {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 14px;
+            color: #ddd;
+        }
+        
+        .metadata span {
+            margin-right: 10px;
+        }
+        
+        .separator {
+            margin: 0 10px;
+            font-size: 10px;
+            color: #999;
+        }
+        
+        .description {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+        
+        .buttons {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        
+        .play-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+        
+        .more-info-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(109, 109, 110, 0.7);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .button-icon {
+            margin-right: 10px;
+        }
+        
+        .genre-tags {
+            font-size: 14px;
+            color: #ddd;
+        }
+        
+        .sliders-container {
+            position: absolute;
+            bottom: -48%;
+            width: 100%;
+            padding: 0 4%;
+            padding-bottom: 3rem;
+        }
+        
+        .slider-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .slider {
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE 10+ */
+            gap: 1.5rem;
+        }
+        
+        .slider::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        
+        .slider-item {
+            min-width: 230px;
+            height: 129px;
+            background-color: #333;
+            margin-right: 8px;
+            border-radius: 4px;
+            transition: transform 0.3s;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slider-item:hover {
+            transform: scale(1.08);
+            z-index: 10;
+        }
+        
+        .maturity-rating {
+            border: 1px solid #ddd;
+            padding: 0 5px;
+            margin-right: 10px;
+        }
+        
+        .info-button {
+            position: absolute;
+            bottom: 25%;
+            right: 5%;
+            background-color: rgba(0,0,0,0.5);
+            border: 1px solid #fff;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .volume-button {
+            position: absolute;
+            bottom: 25%;
+            right: 10%;
+            background-color: rgba(0,0,0,0.5);
+            border: 1px solid #fff;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        /* User Icon Styling */
+.user-icon {
+  cursor: pointer;
+  position: relative;
+}
+
+/* User Profile Container Base Styling */
+#user-profile-container {
+  position: absolute;
+  top: 60px; /* Adjust based on your header height */
+  right: 20px;
+  width: 280px;
+  background-color: #141414;
+  color: #ffffff;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+/* Show state for the dropdown */
+#user-profile-container.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Add a dropdown arrow */
+#user-profile-container::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: 20px; /* Align with user icon */
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #141414;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user-profile p {
+  margin: 0;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #e5e5e5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-profile p strong {
+  font-weight: 500;
+  color: #ffffff;
+  margin-right: 6px;
+  display: inline-block;
+  min-width: 90px;
+}
+
+.logout-btn {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.logout-btn:hover {
+  background-color: #f40612;
+}
+
+.logout-btn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  #user-profile-container {
+    width: 240px;
+    right: 10px;
+  }
+}
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-left">
+            <img src="/assets/images/Logos-Readability-Netflix-logo.png" alt="Netflix" class="netflix-logo">
+            <ul class="nav-links">
+                <li>Home</li>
+                <li>TV Shows</li>
+                <li>Movies</li>
+                <li>New & Popular</li>
+                <li>My List</li>
+                <li>Browse by Languages</li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.39zM11 18a7 7 0 1 1 7-7 7 7 0 0 1-7 7z"></path>
+            </svg>
+            <svg class="nav-icon" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"></path>
+            </svg>
+            <span>
+                <div class="user-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </span>
+            
+            <div id="user-profile-container"></div>
+        </div>
+    </header>
+    
+   
+        
+        
+    <div class="video_containerPlaying">
+      <video style="border-radius: 2rem;" controls width="640" height="360">
+        <source src=""type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+   
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+  // Get user icon element
+  const userIcon = document.querySelector(".user-icon");
+
+  if (userIcon) {
+    userIcon.addEventListener("click", function () {
+      fetchUserInfo();
+    });
+  }
+
+  // Get user profile container
+  const userProfileContainer = document.getElementById(
+    "user-profile-container"
+  );
+
+  // Function to fetch user info
+  function fetchUserInfo() {
+    fetch("/api/user-info")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Not logged in");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        displayUserInfo(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user info:", error);
+      });
+  }
+
+  // Function to display user info
+  function displayUserInfo(data) {
+    if (userProfileContainer) {
+      // Toggle visibility of user profile container
+      userProfileContainer.classList.toggle("show");
+
+      // Update user info
+      userProfileContainer.innerHTML = `
+                <div class="user-profile">
+                    <p><strong>Email:</strong> ${data.email}</p>
+                    <p><strong>Subscription:</strong> ${data. fullname}</p>
+                    <form action="/logout" method="POST">
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                </div>
+            `;
+    }
+  }
+
+  // Close user profile when clicking outside
+  document.addEventListener("click", function (event) {
+    if (
+      userProfileContainer &&
+      userProfileContainer.classList.contains("show") &&
+      !userProfileContainer.contains(event.target) &&
+      !event.target.classList.contains("user-icon")
+    ) {
+      userProfileContainer.classList.remove("show");
+    }
+  });
+});
+
+    </script>
+</body>
+</html>
